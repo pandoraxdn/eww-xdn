@@ -1,0 +1,6 @@
+(defwidget disk []
+  (box :orientation "v" :class "disk"
+    (label :text "{disk_usage}" :class "disk-usage")
+    (label :text "Used space" :class "disk-label")
+  )
+)

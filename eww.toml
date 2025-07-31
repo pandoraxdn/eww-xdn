@@ -1,0 +1,23 @@
+[variables]
+time = "--"
+ampm = "--"
+date = "--"
+weather_temp = "--°C"
+weather_desc = "Loading..."
+song_title = "The Night We Met"
+artist = "Lord Huron"
+disk_usage = "15GB"
+
+[windows.main]
+workspace = "*"
+layer = "top"
+exclusive = true
+focusable = false
+
+[bindings]
+time = ["scripts/clock.sh"]
+weather_temp = ["scripts/weather.sh"]
+weather_desc = ["scripts/weather.sh"]
+song_title = ["scripts/music.sh"]
+artist = ["scripts/music.sh"]
+disk_usage = ["scripts/disk.sh"]

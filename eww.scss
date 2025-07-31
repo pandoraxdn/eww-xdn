@@ -1,0 +1,91 @@
+$bg: #2e3440;
+$fg: #eceff4;
+$accent: #88c0d0;
+$red: #bf616a;
+$green: #a3be8c;
+$yellow: #ebcb8b;
+$blue: #81a1c1;
+$font: "JetBrainsMono Nerd Font";
+
+* {
+  all: unset;
+  font-family: $font;
+  color: $fg;
+  background-color: transparent;
+}
+
+.clock {
+  font-size: 36px;
+  color: $accent;
+}
+
+.profile {
+  .avatar {
+    border-radius: 50%;
+  }
+}
+
+.name {
+  color: $red;
+  font-weight: bold;
+}
+
+.handle {
+  color: $blue;
+  font-style: italic;
+}
+
+.music {
+  .song-title {
+    font-size: 20px;
+    color: $green;
+  }
+
+  .artist {
+    font-size: 16px;
+    color: $yellow;
+  }
+}
+
+.controls {
+  button {
+    background-color: $bg;
+    padding: 5px;
+    border-radius: 8px;
+  }
+}
+
+.disk-usage {
+  color: $accent;
+  font-weight: bold;
+}
+
+.system {
+  label {
+    padding: 5px;
+    margin: 2px;
+    background-color: $blue;
+    border-radius: 6px;
+  }
+}
+
+.apps image,
+.social image {
+  border-radius: 30px;
+  padding: 4px;
+  background-color: $bg;
+}
+
+window {
+  background-color: transparent;
+}
+
+.main {
+  background-color: transparent;
+}
+
+.box {
+  background-color: rgba(30, 30, 30, 0.3);
+  border-radius: 16px;
+  padding: 16px;
+}

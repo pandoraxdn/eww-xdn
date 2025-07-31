@@ -1,0 +1,13 @@
+(defwidget apps []
+  (box :orientation "h" :class "apps" :spacing 10
+    (eventbox :onclick "google-chrome-stable"
+      (image :path "imgs/chrome.png")
+    )
+    (eventbox :onclick "google-chrome-stable https://telegram.com"
+      (image :path "imgs/telegram.png")
+    )
+    (eventbox :onclick "google-chrome-stable https://github.com"
+      (image :path "imgs/github.png")
+    )
+  )
+)

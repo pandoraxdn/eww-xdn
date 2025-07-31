@@ -1,0 +1,7 @@
+(defwidget clock []
+  (box :orientation "h" :class "clock"
+    (label :text "{time}" :class "time")
+    (label :text "{ampm}" :class "ampm")
+    (label :text "{date}" :class "date")
+  )
+)

@@ -1,0 +1,7 @@
+(defwidget profile []
+  (box :class "profile" :orientation "v" :spacing 5
+    (image :path "/home/najimi/.config/eww/icons/logo.jpg" :width 10 :height 10 :class "avatar")
+    (label :text "Rodrigo Xdn" :class "name")
+    (label :text "@pandoraxdn" :class "handle")
+  )
+)

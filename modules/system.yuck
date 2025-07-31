@@ -1,0 +1,13 @@
+(defwidget system []
+  (box :orientation "v" :class "system" :spacing 10
+    (eventbox :onclick "reboot"
+      (label :text " Restart")
+    )
+    (eventbox :onclick "systemctl suspend"
+      (label :text " Suspend")
+    )
+    (eventbox :onclick "poweroff"
+      (label :text " Poweroff")
+    )
+  )
+)

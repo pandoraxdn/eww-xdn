@@ -1,0 +1,6 @@
+(defwidget weather []
+  (box :orientation "v" :class "weather"
+    (label :text "{weather_temp}" :class "temperature")
+    (label :text "{weather_desc}" :class "description")
+  )
+)

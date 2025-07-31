@@ -1,0 +1,13 @@
+(defwidget social []
+  (box :orientation "h" :class "social" :spacing 10
+    (eventbox :onclick "google-chrome-stable https://twitter.com"
+      (image :path "imgs/twitter.png")
+    )
+    (eventbox :onclick "google-chrome-stable https://youtube.com"
+      (image :path "imgs/youtube.png")
+    )
+    (eventbox :onclick "google-chrome-stable https://reddit.com"
+     (image :path "imgs/reddit.png")
+    )
+  )
+)

@@ -1,0 +1,11 @@
+(defwidget music []
+  (box :orientation "v" :class "music"
+    (label :text "{song_title}" :class "song-title")
+    (label :text "{artist}" :class "artist")
+    (box :orientation "h" :spacing 10 :class "controls"
+      (button :onclick "playerctl previous" "⏮")
+      (button :onclick "playerctl play-pause" "⏯")
+      (button :onclick "playerctl next" "⏭")
+    )
+  )
+)
