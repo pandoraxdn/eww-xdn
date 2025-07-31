@@ -14,6 +14,29 @@ $font: "JetBrainsMono Nerd Font";
   background-color: transparent;
 }
 
+.clock-widget {
+  font-family: "Fira Code", "Material Icons";
+  padding: 4px 12px;
+  
+  .time-text {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #f8f8f2;
+  }
+  
+  .ampm-text {
+    font-size: 0.9rem;
+    color: #bd93f9;
+    margin-left: 4px;
+    align-self: flex-end;
+  }
+  
+  .date-text {
+    font-size: 0.9rem;
+    color: #6272a4;
+  }
+}
+
 .clock {
   font-size: 36px;
   color: $accent;

@@ -7,15 +7,122 @@
 (include "modules/apps.yuck")
 (include "modules/social.yuck")
 
-(defwindow main :monitor 0 :geometry (geometry :x 0 :y 0 :width 1920 :height 1080)
-  (box :class "box" :orientation "v" :halign "center" :valign "center" :spacing 20
-    (profile)
-    (clock)
-    (weather)
-    (music)
-    (disk)
-    (system)
-    (apps)
-    (social)
-  )
-)
+(defwindow main
+  :monitor 0
+  :geometry (geometry
+    :x "0"
+    :y "0"
+    :width "100%"
+    :height "30"
+    :anchor "top center")
+  :stacking "fg"
+  :windowtype "dock"
+  (bar))
+
+(defpoll time 
+  :interval "1m"
+  :initial "00:00"
+  "echo $EWW_TIME")
+
+(defpoll ampm 
+  :interval "1m"
+  :initial "AM"
+  "echo $EWW_AMPM")
+
+(defpoll date 
+  :interval "1h"
+  :initial "Loading..."
+  "echo $EWW_DATE")
+
+(defpoll net :interval "1s" "scripts/traffic")
+(defpoll uptime :interval "1m" "scripts/uptime")
+(defpoll disk_used :interval "5m" "scripts/disk_used")
+(defpoll disk_total :interval "5m" "scripts/disk_total")
+(defpoll ram_used :interval "2s" "scripts/ram_used")
+(defpoll ram_free :interval "2s" "scripts/ram_free")
+(defpoll cpu_freq :interval "5s" "scripts/cpu_freq")
+
+(defwidget system-info []
+  (box :class "system-info"
+    :orientation "vertical"
+    :spacing 2
+    
+    (box :orientation "horizontal"
+      (label :text "dead-master")
+      (label :text {net}))
+    
+    (box :orientation "horizontal"
+      (label :text {uptime})
+      (label :text {time})
+      (label :text "08:14"))
+    
+    (box :orientation "horizontal"
+      (label :text "Size")
+      (label :text {disk_used})
+      (label :text "/")
+      (label :text {disk_total}))
+    
+    (box :orientation "horizontal"
+      (label :text "Max")
+      (label :text {ram_used})
+      (label :text {ram_free}))
+    
+    (box :orientation "horizontal"
+      (label :text "GHz")
+      (label :text {cpu_freq})))
+
+(defwidget action-buttons []
+  (box :class "action-buttons"
+    :orientation "vertical"
+    :spacing 5
+    
+    (button :class "button" :onclick "eww update refl=true" "Refl Menu")
+    (button :class "button" :onclick "pkill rofi || jtmenu" "Dmenu")
+    (button :class "button" :onclick "jtmenu-workspaces" "Menu Workspaces")
+    (button :class "button" :onclick "alacritty" "Terminal")
+    (button :class "button" :onclick "thunar" "File Manager")
+    (button :class "button" :onclick "scrot" "Screenshot")
+    (button :class "button" :onclick "systemctl reboot" "Restart")
+    (button :class "button" :onclick "pkill eww && i3-msg exit" "Stop application")
+    (button :class "button" :onclick "pkill eww" "Exit")))
+
+(defwidget time-section []
+  (box :class "time-section"
+    :orientation "vertical"
+    :spacing 2
+    
+    (box :orientation "horizontal"
+      :space-evenly false
+      (label :class "time-text" :text {time})
+      (label :class "ampm-text" :text {ampm}))
+    
+    (label :class "date-text" :text {date})))
+
+(defwidget user-info []
+  (box :class "user-info"
+    (label :text "96378 (Xantusia)")))
+
+(defwidget bar []
+  (box :class "bar"
+    :orientation "horizontal"
+    :space-evenly false
+    
+    ;; Sección izquierda: Información del sistema
+    (system-info)
+    
+    ;; Separador
+    (box :class "separator" :width 2)
+    
+    ;; Sección central: Botones de acción
+    (action-buttons)
+    
+    ;; Separador
+    (box :class "separator" :width 2)
+    
+    ;; Sección derecha: Tiempo y usuario
+    (box :class "right-panel"
+      :orientation "vertical"
+      :spacing 5
+      
+      (time-section)
+      (user-info))))

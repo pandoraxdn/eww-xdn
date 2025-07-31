@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
 #!/bin/bash
 
-while true; do
-  echo "time=$(date +%I:%M)"
-  echo "ampm=$(date +%p)"
-  echo "date=$(date +%A)"
-  sleep 30
-done
+# Variables con formato limpio (sin prefijos/texto extra)
+time=$(date +"%H:%M")
+ampm=$(date +"%p")
+date=$(date +"%a %d %b")
+
+# Actualiza variables EWW directamente
+eww update time="$time"
+eww update ampm="$ampm"
+eww update date="$date"
+
+echo "$time"  # Solo para depuración
