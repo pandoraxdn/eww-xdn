@@ -1,14 +1,13 @@
 #!/usr/bin/env bash
 #!/bin/bash
 
-# Variables con formato limpio (sin prefijos/texto extra)
+# Configurar formato de hora en inglés
+export LC_TIME=C
+
+# Obtener valores de tiempo
 time=$(date +"%H:%M")
 ampm=$(date +"%p")
 date=$(date +"%a %d %b")
 
-# Actualiza variables EWW directamente
-eww update time="$time"
-eww update ampm="$ampm"
-eww update date="$date"
-
-echo "$time"  # Solo para depuración
+# Salida en formato JSON
+echo "{\"time\":\"$time\",\"ampm\":\"$ampm\",\"date\":\"$date\"}"

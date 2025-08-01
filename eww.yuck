@@ -1,12 +1,6 @@
-(include "modules/profile.yuck")
-(include "modules/clock.yuck")
-(include "modules/weather.yuck")
-(include "modules/music.yuck")
-(include "modules/disk.yuck")
-(include "modules/system.yuck")
-(include "modules/apps.yuck")
-(include "modules/social.yuck")
-
+;; ========================================================
+;; Configuración principal de EWW
+;; ========================================================
 (defwindow main
   :monitor 0
   :geometry (geometry
@@ -19,20 +13,23 @@
   :windowtype "dock"
   (bar))
 
+;; ========================================================
+;; Definición de variables de estado
+;; ========================================================
 (defpoll time 
   :interval "1m"
   :initial "00:00"
-  "echo $EWW_TIME")
+  "scripts/clock | jq -r '.time'")
 
 (defpoll ampm 
   :interval "1m"
   :initial "AM"
-  "echo $EWW_AMPM")
+  "scripts/clock | jq -r '.ampm'")
 
 (defpoll date 
   :interval "1h"
-  :initial "Loading..."
-  "echo $EWW_DATE")
+  :initial "Mon 01 Jan"
+  "scripts/clock | jq -r '.date'")
 
 (defpoll net :interval "1s" "scripts/traffic")
 (defpoll uptime :interval "1m" "scripts/uptime")
@@ -42,40 +39,40 @@
 (defpoll ram_free :interval "2s" "scripts/ram_free")
 (defpoll cpu_freq :interval "5s" "scripts/cpu_freq")
 
+;; ========================================================
+;; Componentes de la interfaz
+;; ========================================================
+
+;; Widget de información del sistema
 (defwidget system-info []
   (box :class "system-info"
     :orientation "vertical"
     :spacing 2
-    
     (box :orientation "horizontal"
       (label :text "dead-master")
       (label :text {net}))
-    
     (box :orientation "horizontal"
       (label :text {uptime})
       (label :text {time})
       (label :text "08:14"))
-    
     (box :orientation "horizontal"
       (label :text "Size")
       (label :text {disk_used})
       (label :text "/")
       (label :text {disk_total}))
-    
     (box :orientation "horizontal"
       (label :text "Max")
       (label :text {ram_used})
       (label :text {ram_free}))
-    
     (box :orientation "horizontal"
       (label :text "GHz")
       (label :text {cpu_freq})))
 
+;; Widget de botones de acción
 (defwidget action-buttons []
   (box :class "action-buttons"
     :orientation "vertical"
     :spacing 5
-    
     (button :class "button" :onclick "eww update refl=true" "Refl Menu")
     (button :class "button" :onclick "pkill rofi || jtmenu" "Dmenu")
     (button :class "button" :onclick "jtmenu-workspaces" "Menu Workspaces")
@@ -86,43 +83,36 @@
     (button :class "button" :onclick "pkill eww && i3-msg exit" "Stop application")
     (button :class "button" :onclick "pkill eww" "Exit")))
 
+;; Widget de información de tiempo
 (defwidget time-section []
   (box :class "time-section"
     :orientation "vertical"
     :spacing 2
-    
     (box :orientation "horizontal"
       :space-evenly false
       (label :class "time-text" :text {time})
       (label :class "ampm-text" :text {ampm}))
-    
     (label :class "date-text" :text {date})))
 
+;; Widget de información de usuario
 (defwidget user-info []
   (box :class "user-info"
     (label :text "96378 (Xantusia)")))
 
+;; Barra principal (estructura simplificada y corregida)
 (defwidget bar []
   (box :class "bar"
     :orientation "horizontal"
     :space-evenly false
-    
-    ;; Sección izquierda: Información del sistema
     (system-info)
-    
-    ;; Separador
     (box :class "separator" :width 2)
-    
-    ;; Sección central: Botones de acción
     (action-buttons)
-    
-    ;; Separador
     (box :class "separator" :width 2)
-    
-    ;; Sección derecha: Tiempo y usuario
     (box :class "right-panel"
       :orientation "vertical"
       :spacing 5
-      
       (time-section)
-      (user-info))))
+      (user-info)
+    )
+  )
+)

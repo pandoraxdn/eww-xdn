@@ -1,34 +1,55 @@
-$bg: #2e3440;
-$fg: #eceff4;
-$accent: #88c0d0;
-$red: #bf616a;
-$green: #a3be8c;
-$yellow: #ebcb8b;
-$blue: #81a1c1;
-$font: "JetBrainsMono Nerd Font";
+/* ======================================================== */
+/* Estilos principales - CORREGIDOS */
+/* ======================================================== */
 
-* {
-  all: unset;
-  font-family: $font;
-  color: $fg;
-  background-color: transparent;
+.bar {
+  background-color: #282a36;
+  padding: 10px;
+  font-family: "Fira Code", "Material Design Icons";
+  border-radius: 8px;
+  margin: 5px;
 }
 
-.clock-widget {
-  font-family: "Fira Code", "Material Icons";
-  padding: 4px 12px;
+.system-info {
+  color: #f8f8f2;
+  font-size: 0.9rem;
   
+  box {
+    margin: 3px 0;
+  }
+  
+  label {
+    margin: 0 4px;
+  }
+}
+
+.action-buttons {
+  .button {
+    background-color: #44475a;
+    color: #f8f8f2;
+    padding: 5px 12px;
+    border-radius: 4px;
+    margin: 4px 0;
+    
+    &:hover {
+      background-color: #6272a4;
+    }
+  }
+}
+
+.time-section {
   .time-text {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: bold;
     color: #f8f8f2;
   }
   
   .ampm-text {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: #bd93f9;
-    margin-left: 4px;
-    align-self: flex-end;
+    margin-left: 5px;
+    vertical-align: bottom;
+    line-height: 1.8rem;
   }
   
   .date-text {
@@ -37,78 +58,19 @@ $font: "JetBrainsMono Nerd Font";
   }
 }
 
-.clock {
-  font-size: 36px;
-  color: $accent;
+.user-info {
+  color: #50fa7b;
+  font-size: 0.9rem;
 }
 
-.profile {
-  .avatar {
-    border-radius: 50%;
-  }
+.separator {
+  background-color: #6272a4;
+  margin: 0 15px;
+  width: 1px;
+  height: 80%;
+  border-radius: 1px;
 }
 
-.name {
-  color: $red;
-  font-weight: bold;
-}
-
-.handle {
-  color: $blue;
-  font-style: italic;
-}
-
-.music {
-  .song-title {
-    font-size: 20px;
-    color: $green;
-  }
-
-  .artist {
-    font-size: 16px;
-    color: $yellow;
-  }
-}
-
-.controls {
-  button {
-    background-color: $bg;
-    padding: 5px;
-    border-radius: 8px;
-  }
-}
-
-.disk-usage {
-  color: $accent;
-  font-weight: bold;
-}
-
-.system {
-  label {
-    padding: 5px;
-    margin: 2px;
-    background-color: $blue;
-    border-radius: 6px;
-  }
-}
-
-.apps image,
-.social image {
-  border-radius: 30px;
-  padding: 4px;
-  background-color: $bg;
-}
-
-window {
-  background-color: transparent;
-}
-
-.main {
-  background-color: transparent;
-}
-
-.box {
-  background-color: rgba(30, 30, 30, 0.3);
-  border-radius: 16px;
-  padding: 16px;
+.right-panel {
+  padding-right: 10px;
 }
